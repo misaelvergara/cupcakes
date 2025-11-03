@@ -1,26 +1,26 @@
-import { Component, computed } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Output, EventEmitter, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../../services/order.service';
 import { Order } from '../../../models/cupcake.model';
 import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
-  selector: 'app-order-list',
+  selector: 'app-admin-orders',
   standalone: true,
   imports: [CommonModule, HeaderComponent],
-  templateUrl: './order-list.component.html',
-  styleUrl: './order-list.component.scss'
+  templateUrl: './admin-orders.component.html',
+  styleUrl: './admin-orders.component.scss'
 })
-export class OrderListComponent {
+export class AdminOrdersComponent {
+  @Output() homeClick = new EventEmitter<void>();
+  
   // Usa signal diretamente para atualização automática
   orders = computed(() => {
     return [...this.orderService.allOrders()].reverse(); // Mais recente primeiro
   });
 
   constructor(
-    private orderService: OrderService,
-    private router: Router
+    private orderService: OrderService
   ) {}
 
   getStatusLabel(status: Order['status']): string {
@@ -33,21 +33,28 @@ export class OrderListComponent {
     return labels[status] || status;
   }
 
-  markAsReceived(orderId: string): void {
-    this.orderService.updateOrderStatus(orderId, 'completed');
+  getStatusClass(status: Order['status']): string {
+    if (status === 'completed') return 'completed';
+    if (status === 'sent') return 'sent';
+    if (status === 'cancelled') return 'cancelled';
+    return 'pending';
   }
 
-  cancelOrder(orderId: string): void {
+  markAsSent(orderId: string): void {
+    this.orderService.updateOrderStatus(orderId, 'sent');
+  }
+
+  markAsCancelled(orderId: string): void {
     if (confirm('Tem certeza que deseja cancelar este pedido?')) {
       this.orderService.updateOrderStatus(orderId, 'cancelled');
     }
   }
 
   goHome(): void {
-    this.router.navigate(['/customer']);
+    this.homeClick.emit();
   }
 
   getPaymentMethodLabel(method: 'credit' | 'pix'): string {
-    return method === 'credit' ? 'Cartão de Crédito' : 'PIX';
+    return method === 'credit' ? 'CC' : 'PIX';
   }
 }

@@ -12,14 +12,14 @@
         </div>
         <div class="android-nav-bar">
           <button 
-            *ngIf="!isHomePage"
+            *ngIf="!isCustomerHomePage"
             class="nav-button back-button" 
-            (click)="goBack()" 
+            (click)="goBackCustomer()" 
             title="Voltar">
             ◀
           </button>
-          <div *ngIf="isHomePage" class="nav-spacer"></div>
-          <button class="nav-button home-button" (click)="goHome()" title="Home">
+          <div *ngIf="isCustomerHomePage" class="nav-spacer"></div>
+          <button class="nav-button home-button" (click)="goHomeCustomer()" title="Home">
             ⚫
           </button>
           <button class="nav-button recent-button" title="Recentes">
@@ -29,22 +29,36 @@
       </div>
     </div>
 
-    <!-- Smartphone 2 - Admin View (To be implemented) -->
+    <!-- Smartphone 2 - Admin View -->
     <div class="smartphone">
       <div class="phone-frame">
         <div class="screen">
           <div class="app-content">
-            <div class="placeholder">
-              <h2>Admin View</h2>
-              <p>Coming soon...</p>
-            </div>
+            <app-home-admin 
+              *ngIf="adminCurrentView === 'home'"
+              (ordersClick)="navigateAdmin('orders')"
+              (cupcakesClick)="navigateAdmin('cupcakes')">
+            </app-home-admin>
+            <app-admin-orders 
+              *ngIf="adminCurrentView === 'orders'"
+              (homeClick)="goHomeAdmin()">
+            </app-admin-orders>
+            <app-manage-cupcakes 
+              *ngIf="adminCurrentView === 'cupcakes'"
+              (homeClick)="goHomeAdmin()">
+            </app-manage-cupcakes>
           </div>
         </div>
         <div class="android-nav-bar">
-          <button class="nav-button back-button" title="Voltar">
+          <button 
+            *ngIf="!isAdminHomePage"
+            class="nav-button back-button" 
+            (click)="goBackAdmin()" 
+            title="Voltar">
             ◀
           </button>
-          <button class="nav-button home-button" title="Home">
+          <div *ngIf="isAdminHomePage" class="nav-spacer"></div>
+          <button class="nav-button home-button" (click)="goHomeAdmin()" title="Home">
             ⚫
           </button>
           <button class="nav-button recent-button" title="Recentes">

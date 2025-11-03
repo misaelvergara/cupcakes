@@ -17,6 +17,6 @@ export interface Order {
   total: number;
   address: string;
   paymentMethod: 'credit' | 'pix';
-  status: 'pending' | 'sent' | 'completed';
+  status: 'pending' | 'sent' | 'completed' | 'cancelled';
   date: Date;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CupcakeService } from '../../../services/cupcake.service';
@@ -13,8 +13,9 @@ import { HeaderComponent } from '../../shared/header/header.component';
   templateUrl: './cupcake-list.component.html',
   styleUrl: './cupcake-list.component.scss'
 })
-export class CupcakeListComponent implements OnInit {
-  cupcakes: Cupcake[] = [];
+export class CupcakeListComponent {
+  // Usa signals diretamente para atualização automática
+  cupcakes = this.cupcakeService.allCupcakes;
   cartItemCount = this.cartService.itemCount;
 
   constructor(
@@ -22,10 +23,6 @@ export class CupcakeListComponent implements OnInit {
     private cartService: CartService,
     private router: Router
   ) {}
-
-  ngOnInit(): void {
-    this.cupcakes = this.cupcakeService.getCupcakes();
-  }
 
   viewDetails(cupcake: Cupcake): void {
     this.router.navigate(['/customer/cupcake', cupcake.id]);

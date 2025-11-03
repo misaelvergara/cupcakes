@@ -16,7 +16,7 @@ export class OrderService {
       ...order,
       id: this.generateOrderId(),
       date: new Date(),
-      status: 'sent'
+      status: 'pending'
     };
 
     this.orders.set([...this.orders(), newOrder]);

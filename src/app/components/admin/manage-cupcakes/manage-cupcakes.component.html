@@ -1,0 +1,74 @@
+<div class="manage-container">
+  <app-header [title]="'Administrador'"></app-header>
+
+  <div class="content">
+    <!-- Form para adicionar/editar -->
+    <div class="form-section">
+      <h3>{{ editingCupcake ? 'Editar' : 'Adicionar' }} Cupcake</h3>
+      
+      <div class="form-group">
+        <input 
+          type="text" 
+          [(ngModel)]="newCupcake.name" 
+          placeholder="Nome do cupcake"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <input 
+          type="number" 
+          [(ngModel)]="newCupcake.price" 
+          placeholder="Preço"
+          step="0.01"
+          class="form-input">
+      </div>
+
+      <div class="form-group">
+        <input 
+          type="text" 
+          [(ngModel)]="newCupcake.image" 
+          placeholder="URL da imagem"
+          class="form-input">
+      </div>
+
+      <div class="button-group">
+        <button 
+          class="action-button save" 
+          (click)="addOrUpdateCupcake()">
+          {{ editingCupcake ? 'Atualizar' : 'Adicionar' }}
+        </button>
+        <button 
+          *ngIf="editingCupcake"
+          class="action-button cancel" 
+          (click)="cancelEdit()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de cupcakes -->
+    <div class="cupcakes-list">
+      <div *ngFor="let cupcake of cupcakes()" class="cupcake-item">
+        <div class="cupcake-preview">
+          <img [src]="cupcake.image" [alt]="cupcake.name">
+        </div>
+        <div class="cupcake-details">
+          <h4>{{ cupcake.name }}</h4>
+          <p class="price">R$ {{ cupcake.price.toFixed(2) }}</p>
+        </div>
+        <div class="item-actions">
+          <button class="icon-button edit" (click)="editCupcake(cupcake)" title="Editar">
+            ✏️
+          </button>
+          <button class="icon-button delete" (click)="deleteCupcake(cupcake.id)" title="Excluir">
+            🗑️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button class="home-button" (click)="goHome()">
+      Voltar para home
+    </button>
+  </div>
+</div>

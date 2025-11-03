@@ -5,6 +5,9 @@ import { CupcakeDetailComponent } from './components/customer/cupcake-detail/cup
 import { CartComponent } from './components/customer/cart/cart.component';
 import { OrderConfirmationComponent } from './components/customer/order-confirmation/order-confirmation.component';
 import { OrderListComponent } from './components/customer/order-list/order-list.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { ManageCupcakesComponent } from './components/admin/manage-cupcakes/manage-cupcakes.component';
+import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/customer', pathMatch: 'full' },
@@ -14,5 +17,8 @@ export const routes: Routes = [
   { path: 'customer/cupcake/:id', component: CupcakeDetailComponent },
   { path: 'customer/cart', component: CartComponent },
   { path: 'customer/confirmation', component: OrderConfirmationComponent },
+  { path: 'admin', component: HomeAdminComponent },
+  { path: 'admin/orders', component: AdminOrdersComponent },
+  { path: 'admin/manage-cupcakes', component: ManageCupcakesComponent },
   { path: '**', redirectTo: '/customer' }
 ];

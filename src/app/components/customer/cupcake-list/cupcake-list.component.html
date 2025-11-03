@@ -7,7 +7,7 @@
 
   <div class="cupcakes-grid">
     <div 
-      *ngFor="let cupcake of cupcakes" 
+      *ngFor="let cupcake of cupcakes()" 
       class="cupcake-card"
       (click)="viewDetails(cupcake)">
       <div class="cupcake-image">
