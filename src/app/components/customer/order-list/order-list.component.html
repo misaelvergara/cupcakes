@@ -1,0 +1,41 @@
+<div class="order-list-container">
+  <app-header></app-header>
+
+  <div class="content">
+    <div class="orders-scroll" *ngIf="orders.length > 0">
+      <div *ngFor="let order of orders" class="order-card">
+        <div class="order-items">
+          <ul>
+            <li *ngFor="let item of order.items">
+              {{ item.quantity }} unidade<span *ngIf="item.quantity > 1">s</span> de {{ item.cupcake.name }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="order-info">
+          <p class="total">Total: R${{ order.total.toFixed(2) }} ({{ getPaymentMethodLabel(order.paymentMethod) }})</p>
+          <p class="status" [class.completed]="order.status === 'completed'">
+            Status: {{ getStatusLabel(order.status) }}
+          </p>
+        </div>
+
+        <div class="order-actions" *ngIf="order.status !== 'completed'">
+          <button class="action-button received" (click)="markAsReceived(order.id)">
+            Marcar como recebido
+          </button>
+          <button class="action-button cancel" (click)="cancelOrder(order.id)">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="orders.length === 0">
+      <p>Você ainda não realizou nenhum pedido</p>
+    </div>
+
+    <button class="home-button" (click)="goHome()">
+      Voltar para home
+    </button>
+  </div>
+</div>
