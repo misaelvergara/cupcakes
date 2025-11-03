@@ -1,0 +1,127 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+
+  h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.phones-wrapper {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.smartphone {
+  perspective: 1000px;
+
+  .phone-frame {
+    width: 280px;
+    height: 560px;
+    background: linear-gradient(145deg, #2c3e50, #1a252f);
+    border-radius: 35px;
+    padding: 12px;
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 25px;
+      background: #1a252f;
+      border-radius: 0 0 20px 20px;
+      z-index: 2;
+    }
+
+    .screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+
+      .status-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 15px 10px;
+        font-size: 0.75rem;
+        color: #333;
+        background: rgba(255, 255, 255, 0.95);
+
+        .time {
+          font-weight: 600;
+        }
+
+        .icons {
+          font-size: 0.9rem;
+        }
+      }
+
+      .content {
+        padding: 2rem 1.5rem;
+        text-align: center;
+
+        h2 {
+          color: #2c3e50;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          color: #7f8c8d;
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .home-button {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #1a252f;
+      border: 2px solid #34495e;
+      z-index: 3;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .phones-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .smartphone .phone-frame {
+    width: 250px;
+    height: 500px;
+  }
+}
