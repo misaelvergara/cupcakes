@@ -1,0 +1,11 @@
+<header class="header">
+  <div class="logo">
+    <span class="cupcake-icon">🧁</span>
+  </div>
+  <h2>{{ title }}</h2>
+  <div class="cart-icon" *ngIf="showCart && cartItemCount > 0">
+    🛒
+    <span class="badge">{{ cartItemCount }}</span>
+  </div>
+  <div class="spacer" *ngIf="!showCart || cartItemCount === 0"></div>
+</header>

@@ -1,0 +1,23 @@
+<div class="cupcake-detail-container" *ngIf="cupcake">
+  <app-header 
+    [showCart]="true" 
+    [cartItemCount]="cartItemCount()"
+    (click)="cartItemCount() > 0 && goToCart()">
+  </app-header>
+
+  <div class="content">
+    <div class="cupcake-display">
+      <div class="cupcake-image">
+        <img [src]="cupcake.image" [alt]="cupcake.name">
+      </div>
+      <div class="cupcake-info">
+        <h3>{{ cupcake.name }}</h3>
+        <p class="price">R$ {{ cupcake.price.toFixed(2) }}</p>
+      </div>
+    </div>
+
+    <button class="add-to-cart-button" (click)="addToCart()">
+      Adicionar ao carrinho
+    </button>
+  </div>
+</div>

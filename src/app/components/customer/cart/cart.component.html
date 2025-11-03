@@ -1,0 +1,49 @@
+<div class="cart-container">
+  <app-header></app-header>
+
+  <div class="content">
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems()" class="cart-item">
+        <div class="item-info">
+          <p class="item-text">
+            {{ item.quantity }} unidade<span *ngIf="item.quantity > 1">s</span> de {{ item.cupcake.name }}
+          </p>
+          <p class="item-price">R${{ (item.cupcake.price * item.quantity).toFixed(2) }}</p>
+        </div>
+        <button class="remove-button" (click)="removeItem(item.cupcake.id)">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <div class="total">
+      <strong>Total: R${{ total().toFixed(2) }}</strong>
+    </div>
+
+    <div class="address-section">
+      <label for="address">Meu endereço</label>
+      <textarea
+        id="address"
+        [(ngModel)]="address"
+        placeholder="Digite aqui seu endereço por extenso..."
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="payment-section">
+      <button 
+        class="payment-button"
+        (click)="selectPayment('credit')"
+        [class.selected]="selectedPayment === 'credit'">
+        Pagar na entrega com Cartão de Crédito
+      </button>
+      
+      <button 
+        class="payment-button"
+        (click)="selectPayment('pix')"
+        [class.selected]="selectedPayment === 'pix'">
+        Pagar na entrega com PIX
+      </button>
+    </div>
+  </div>
+</div>

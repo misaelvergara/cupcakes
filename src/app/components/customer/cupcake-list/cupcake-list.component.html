@@ -1,0 +1,22 @@
+<div class="cupcake-list-container">
+  <app-header 
+    [showCart]="true" 
+    [cartItemCount]="cartItemCount()"
+    (click)="cartItemCount() > 0 && goToCart()">
+  </app-header>
+
+  <div class="cupcakes-grid">
+    <div 
+      *ngFor="let cupcake of cupcakes" 
+      class="cupcake-card"
+      (click)="viewDetails(cupcake)">
+      <div class="cupcake-image">
+        <img [src]="cupcake.image" [alt]="cupcake.name">
+      </div>
+      <div class="cupcake-info">
+        <h3>{{ cupcake.name }}</h3>
+        <p class="price">R$ {{ cupcake.price.toFixed(2) }}</p>
+      </div>
+    </div>
+  </div>
+</div>
