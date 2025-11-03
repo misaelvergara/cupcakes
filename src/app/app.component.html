@@ -5,20 +5,33 @@
     <!-- Smartphone 1 - Customer View -->
     <div class="smartphone">
       <div class="phone-frame">
-        <div class="notch"></div>
         <div class="screen">
           <div class="app-content">
             <router-outlet></router-outlet>
           </div>
         </div>
-        <div class="home-button"></div>
+        <div class="android-nav-bar">
+          <button 
+            *ngIf="!isHomePage"
+            class="nav-button back-button" 
+            (click)="goBack()" 
+            title="Voltar">
+            ◀
+          </button>
+          <div *ngIf="isHomePage" class="nav-spacer"></div>
+          <button class="nav-button home-button" (click)="goHome()" title="Home">
+            ⚫
+          </button>
+          <button class="nav-button recent-button" title="Recentes">
+            ▢
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Smartphone 2 - Admin View (To be implemented) -->
     <div class="smartphone">
       <div class="phone-frame">
-        <div class="notch"></div>
         <div class="screen">
           <div class="app-content">
             <div class="placeholder">
@@ -27,7 +40,17 @@
             </div>
           </div>
         </div>
-        <div class="home-button"></div>
+        <div class="android-nav-bar">
+          <button class="nav-button back-button" title="Voltar">
+            ◀
+          </button>
+          <button class="nav-button home-button" title="Home">
+            ⚫
+          </button>
+          <button class="nav-button recent-button" title="Recentes">
+            ▢
+          </button>
+        </div>
       </div>
     </div>
   </div>

@@ -38,28 +38,17 @@
       inset 0 0 10px rgba(255, 255, 255, 0.1);
     position: relative;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
       transform: translateY(-10px);
     }
 
-    .notch {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 150px;
-      height: 25px;
-      background: #1a252f;
-      border-radius: 0 0 20px 20px;
-      z-index: 2;
-    }
-
     .screen {
-      width: 100%;
-      height: 100%;
+      flex: 1;
       background: #f5f5f5;
-      border-radius: 25px;
+      border-radius: 25px 25px 0 0;
       overflow: hidden;
       position: relative;
 
@@ -91,17 +80,50 @@
       }
     }
 
-    .home-button {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #1a252f;
-      border: 2px solid #34495e;
-      z-index: 3;
+    .android-nav-bar {
+      height: 48px;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 2rem;
+      border-radius: 0 0 25px 25px;
+
+      .nav-spacer {
+        width: 3rem;
+      }
+
+      .nav-button {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        transition: all 0.2s ease;
+        border-radius: 50%;
+
+        &:hover {
+          color: rgba(255, 255, 255, 1);
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+
+        &.back-button {
+          font-size: 1.3rem;
+        }
+
+        &.home-button {
+          font-size: 1.2rem;
+        }
+
+        &.recent-button {
+          font-size: 1.4rem;
+        }
+      }
     }
   }
 }
