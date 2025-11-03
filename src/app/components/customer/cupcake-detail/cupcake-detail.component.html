@@ -2,7 +2,7 @@
   <app-header 
     [showCart]="true" 
     [cartItemCount]="cartItemCount()"
-    (click)="cartItemCount() > 0 && goToCart()">
+    (cartClick)="goToCart()">
   </app-header>
 
   <div class="content">

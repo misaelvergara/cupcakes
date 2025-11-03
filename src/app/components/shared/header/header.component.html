@@ -3,9 +3,13 @@
     <span class="cupcake-icon">🧁</span>
   </div>
   <h2>{{ title }}</h2>
-  <div class="cart-icon" *ngIf="showCart && cartItemCount > 0">
-    🛒
+  <button 
+    class="cart-button" 
+    *ngIf="showCart && cartItemCount > 0"
+    (click)="onCartClick()"
+    title="Ver carrinho">
+    <span class="cart-icon">🛒</span>
     <span class="badge">{{ cartItemCount }}</span>
-  </div>
+  </button>
   <div class="spacer" *ngIf="!showCart || cartItemCount === 0"></div>
 </header>
