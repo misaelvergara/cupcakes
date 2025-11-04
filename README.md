@@ -37,7 +37,7 @@ Ambos sincronizam em tempo real usando Angular Signals!
 
 ### Backend
 - **Node.js** + **Express.js**
-- **SQLite3** (Banco de dados local)
+- **SQLite3**
 - **CORS** (Cross-Origin Resource Sharing)
 
 ## 🚀 Como Rodar o Projeto
