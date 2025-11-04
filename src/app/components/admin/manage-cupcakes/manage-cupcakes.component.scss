@@ -91,21 +91,23 @@
       transition: all 0.2s ease;
 
       &.save {
-        background-color: #4CAF50;
-        color: white;
+        background: linear-gradient(135deg, #ffb6c1 0%, #ffdab9 100%);
+        color: #333;
+        font-weight: 600;
 
         &:hover {
-          background-color: #45a049;
+          background: linear-gradient(135deg, #ffa0ae 0%, #ffcda0 100%);
           transform: translateY(-2px);
         }
       }
 
       &.cancel {
-        background-color: #f44336;
-        color: white;
+        background-color: #f5f5f5;
+        color: #666;
+        border: 2px solid #e0e0e0;
 
         &:hover {
-          background-color: #da190b;
+          background-color: #e8e8e8;
           transform: translateY(-2px);
         }
       }
@@ -148,18 +150,7 @@
       transition: transform 0.3s ease;
     }
 
-    &:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 
-      &::before {
-        transform: scaleY(1);
-      }
-
-      .cupcake-preview img {
-        transform: scale(1.1);
-      }
-    }
 
     .cupcake-preview {
       width: 70px;
@@ -194,13 +185,9 @@
 
       .price {
         margin: 0;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: white;
-        background: linear-gradient(135deg, #ffb6c1 0%, #ffdab9 100%);
-        padding: 0.25rem 0.75rem;
-        border-radius: 8px;
-        display: inline-block;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #666;
       }
     }
 
@@ -210,39 +197,24 @@
       flex-shrink: 0;
 
       .icon-button {
-        width: 38px;
-        height: 38px;
-        border: 2px solid #f0f0f0;
-        border-radius: 10px;
-        background: white;
+        width: 36px;
+        height: 36px;
+        border: none;
+        border-radius: 8px;
+        background: #f5f5f5;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.1rem;
-        transition: all 0.2s ease;
+        transition: background 0.2s ease;
 
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+          background: #e8e8e8;
         }
 
         &:active {
-          transform: translateY(0);
-        }
-
-        &.edit {
-          &:hover {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-color: #42a5f5;
-          }
-        }
-
-        &.delete {
-          &:hover {
-            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
-            border-color: #ef5350;
-          }
+          background: #d8d8d8;
         }
       }
     }
