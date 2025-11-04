@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: #ffc0cb;
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffd9a8 50%, #ffdab9 100%);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .logo {
@@ -43,7 +43,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      background: #ff4444;
+      background: #ff6b6b;
       color: white;
       border-radius: 50%;
       width: 16px;

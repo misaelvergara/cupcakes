@@ -35,11 +35,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: #ffd9a8;
+    background: linear-gradient(135deg, #ffb6c1 0%, #ffdab9 100%);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     margin-bottom: 1rem;
-    border: 2px solid #ffcf8e;
+    border: 2px solid #ffa0ae;
 
     .badge-icon {
       font-size: 1.2rem;
@@ -95,11 +95,11 @@
   }
 
   &.orders-card::after {
-    background: linear-gradient(180deg, #ffd9a8 0%, #ffcf8e 100%);
+    background: linear-gradient(180deg, #ffb6c1 0%, #ffa0ae 100%);
   }
 
   &.products-card::after {
-    background: linear-gradient(180deg, #ffd9a8 0%, #ffcf8e 100%);
+    background: linear-gradient(180deg, #ffdab9 0%, #ffcda0 100%);
   }
 
   &:hover {
@@ -167,7 +167,7 @@
 .stats-section {
   .stat-card {
     background: white;
-    border: 2px solid #ffd9a8;
+    border: 2px solid #ffdab9;
     border-radius: 12px;
     padding: 1rem;
     display: flex;

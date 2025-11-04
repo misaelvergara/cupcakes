@@ -49,19 +49,19 @@
   border-left: 4px solid #999;
 
   &.pending {
-    border-left-color: #ff9800;
+    border-left-color: #ffa726;
   }
 
   &.sent {
-    border-left-color: #2196F3;
+    border-left-color: #42a5f5;
   }
 
   &.completed {
-    border-left-color: #4CAF50;
+    border-left-color: #66bb6a;
   }
 
   &.cancelled {
-    border-left-color: #f44336;
+    border-left-color: #ef5350;
     opacity: 0.7;
   }
 
@@ -109,19 +109,19 @@
       font-weight: 600;
 
       &.pending {
-        color: #ff9800;
+        color: #ffa726;
       }
 
       &.sent {
-        color: #2196F3;
+        color: #42a5f5;
       }
 
       &.completed {
-        color: #4CAF50;
+        color: #66bb6a;
       }
 
       &.cancelled {
-        color: #f44336;
+        color: #ef5350;
       }
     }
   }

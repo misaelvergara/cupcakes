@@ -59,7 +59,7 @@
 
 .add-to-cart-button {
   padding: 1rem;
-  background-color: #ffd9a8;
+  background: linear-gradient(135deg, #ffb6c1 0%, #ffdab9 100%);
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -70,7 +70,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: #ffcf8e;
+    background: linear-gradient(135deg, #ffa0ae 0%, #ffcda0 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }

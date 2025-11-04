@@ -48,13 +48,21 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-left: 4px solid transparent;
 
-  &:has(.status.cancelled) {
-    border-left-color: #f44336;
-    opacity: 0.7;
+  &:has(.status.pending) {
+    border-left-color: #ffa726;
+  }
+
+  &:has(.status.sent) {
+    border-left-color: #42a5f5;
   }
 
   &:has(.status.completed) {
-    border-left-color: #4CAF50;
+    border-left-color: #66bb6a;
+  }
+
+  &:has(.status.cancelled) {
+    border-left-color: #ef5350;
+    opacity: 0.7;
   }
 
   .order-items {
@@ -100,13 +108,23 @@
       color: #666;
       margin: 0;
 
+      &.pending {
+        color: #ffa726;
+        font-weight: 600;
+      }
+
+      &.sent {
+        color: #42a5f5;
+        font-weight: 600;
+      }
+
       &.completed {
-        color: #4CAF50;
+        color: #66bb6a;
         font-weight: 600;
       }
 
       &.cancelled {
-        color: #f44336;
+        color: #ef5350;
         font-weight: 600;
       }
     }
