@@ -34,12 +34,28 @@ export class OrderListComponent {
   }
 
   markAsReceived(orderId: string): void {
-    this.orderService.updateOrderStatus(orderId, 'completed');
+    this.orderService.updateOrderStatus(orderId, 'completed').subscribe({
+      next: () => {
+        console.log('Order marked as completed');
+      },
+      error: (error) => {
+        console.error('Error updating order status:', error);
+        alert('Erro ao atualizar status do pedido. Tente novamente.');
+      }
+    });
   }
 
   cancelOrder(orderId: string): void {
     if (confirm('Tem certeza que deseja cancelar este pedido?')) {
-      this.orderService.updateOrderStatus(orderId, 'cancelled');
+      this.orderService.updateOrderStatus(orderId, 'cancelled').subscribe({
+        next: () => {
+          console.log('Order cancelled');
+        },
+        error: (error) => {
+          console.error('Error cancelling order:', error);
+          alert('Erro ao cancelar pedido. Tente novamente.');
+        }
+      });
     }
   }
 

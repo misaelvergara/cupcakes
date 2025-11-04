@@ -44,16 +44,22 @@ export class CartComponent {
       return;
     }
 
-    const order = this.orderService.createOrder({
+    this.orderService.createOrder({
       items: this.cartItems(),
       total: this.total(),
       address: this.address,
       paymentMethod: this.selectedPayment
-    });
-
-    this.cartService.clearCart();
-    this.router.navigate(['/customer/confirmation'], { 
-      state: { orderId: order.id } 
+    }).subscribe({
+      next: (order) => {
+        this.cartService.clearCart();
+        this.router.navigate(['/customer/confirmation'], { 
+          state: { orderId: order.id } 
+        });
+      },
+      error: (error) => {
+        console.error('Error creating order:', error);
+        alert('Erro ao criar pedido. Tente novamente.');
+      }
     });
   }
 }

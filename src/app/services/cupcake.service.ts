@@ -1,31 +1,33 @@
 import { Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 import { Cupcake } from '../models/cupcake.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CupcakeService {
-  private cupcakes = signal<Cupcake[]>([
-    {
-      id: 1,
-      name: 'Cupcakke de morango',
-      price: 10.89,
-      image: 'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=400&fit=crop',
-      description: 'Delicioso cupcake de morango com cobertura cremosa'
-    },
-    {
-      id: 2,
-      name: 'Cupcakke de maracujá',
-      price: 10.89,
-      image: 'https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400&h=400&fit=crop',
-      description: 'Cupcake tropical de maracujá com decoração especial'
-    }
-  ]);
-
+  private apiUrl = `${environment.apiUrl}/cupcakes`;
+  private cupcakes = signal<Cupcake[]>([]);
+  
   allCupcakes = this.cupcakes.asReadonly();
-  private nextId = 3;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.loadCupcakes();
+  }
+
+  // Carrega cupcakes do backend
+  private loadCupcakes(): void {
+    this.http.get<Cupcake[]>(this.apiUrl).subscribe({
+      next: (cupcakes) => {
+        this.cupcakes.set(cupcakes);
+      },
+      error: (error) => {
+        console.error('Error loading cupcakes:', error);
+      }
+    });
+  }
 
   getCupcakes(): Cupcake[] {
     return this.cupcakes();
@@ -35,24 +37,36 @@ export class CupcakeService {
     return this.cupcakes().find(c => c.id === id);
   }
 
-  addCupcake(cupcake: Omit<Cupcake, 'id'>): Cupcake {
-    const newCupcake: Cupcake = {
-      ...cupcake,
-      id: this.nextId++
-    };
-    this.cupcakes.set([...this.cupcakes(), newCupcake]);
-    return newCupcake;
-  }
-
-  updateCupcake(cupcake: Cupcake): void {
-    this.cupcakes.set(
-      this.cupcakes().map(c => c.id === cupcake.id ? cupcake : c)
+  addCupcake(cupcake: Omit<Cupcake, 'id'>): Observable<Cupcake> {
+    return this.http.post<Cupcake>(this.apiUrl, cupcake).pipe(
+      tap(newCupcake => {
+        this.cupcakes.set([...this.cupcakes(), newCupcake]);
+      })
     );
   }
 
-  deleteCupcake(id: number): void {
-    this.cupcakes.set(
-      this.cupcakes().filter(c => c.id !== id)
+  updateCupcake(cupcake: Cupcake): Observable<Cupcake> {
+    return this.http.put<Cupcake>(`${this.apiUrl}/${cupcake.id}`, cupcake).pipe(
+      tap(updatedCupcake => {
+        this.cupcakes.set(
+          this.cupcakes().map(c => c.id === updatedCupcake.id ? updatedCupcake : c)
+        );
+      })
     );
+  }
+
+  deleteCupcake(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`).pipe(
+      tap(() => {
+        this.cupcakes.set(
+          this.cupcakes().filter(c => c.id !== id)
+        );
+      })
+    );
+  }
+
+  // Recarrega cupcakes do servidor (útil para sincronizar)
+  refresh(): void {
+    this.loadCupcakes();
   }
 }

@@ -41,14 +41,28 @@ export class ManageCupcakesComponent {
       this.cupcakeService.updateCupcake({
         ...this.editingCupcake,
         ...this.newCupcake
-      } as Cupcake);
-      this.editingCupcake = null;
+      } as Cupcake).subscribe({
+        next: () => {
+          this.editingCupcake = null;
+          this.resetForm();
+        },
+        error: (error) => {
+          console.error('Error updating cupcake:', error);
+          alert('Erro ao atualizar cupcake. Tente novamente.');
+        }
+      });
     } else {
       // Add new
-      this.cupcakeService.addCupcake(this.newCupcake as Omit<Cupcake, 'id'>);
+      this.cupcakeService.addCupcake(this.newCupcake as Omit<Cupcake, 'id'>).subscribe({
+        next: () => {
+          this.resetForm();
+        },
+        error: (error) => {
+          console.error('Error adding cupcake:', error);
+          alert('Erro ao adicionar cupcake. Tente novamente.');
+        }
+      });
     }
-
-    this.resetForm();
   }
 
   editCupcake(cupcake: Cupcake): void {
@@ -58,7 +72,15 @@ export class ManageCupcakesComponent {
 
   deleteCupcake(id: number): void {
     if (confirm('Tem certeza que deseja excluir este cupcake?')) {
-      this.cupcakeService.deleteCupcake(id);
+      this.cupcakeService.deleteCupcake(id).subscribe({
+        next: () => {
+          console.log('Cupcake deleted successfully');
+        },
+        error: (error) => {
+          console.error('Error deleting cupcake:', error);
+          alert('Erro ao deletar cupcake. Tente novamente.');
+        }
+      });
     }
   }
 
