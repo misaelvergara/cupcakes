@@ -1,11 +1,48 @@
 <div class="home-container">
-  <div class="button-group">
-    <button class="home-button" (click)="goToOrders()">
-      Lista de pedidos
-    </button>
-    
-    <button class="home-button" (click)="goToManageCupcakes()">
-      Adicionar novo item
-    </button>
+  <div class="content">
+    <div class="hero-section">
+      <div class="admin-badge">
+        <span class="badge-icon">👨‍💼</span>
+        <span class="badge-text">ADMINISTRADOR</span>
+      </div>
+      <h1 class="title">Painel de Controle</h1>
+      <p class="subtitle">Gerencie sua padaria</p>
+    </div>
+
+    <div class="menu-cards">
+      <div class="menu-card orders-card" (click)="goToOrders()">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div class="card-badge">Gestão</div>
+        </div>
+        <h3 class="card-title">Pedidos</h3>
+        <p class="card-description">Visualize e gerencie todos os pedidos</p>
+        <div class="card-footer">
+          <span class="card-action">Acessar →</span>
+        </div>
+      </div>
+
+      <div class="menu-card products-card" (click)="goToManageCupcakes()">
+        <div class="card-header">
+          <div class="card-icon">🧁</div>
+          <div class="card-badge">Produtos</div>
+        </div>
+        <h3 class="card-title">Catálogo</h3>
+        <p class="card-description">Adicione, edite e remova cupcakes</p>
+        <div class="card-footer">
+          <span class="card-action">Acessar →</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon">✨</div>
+        <div class="stat-info">
+          <p class="stat-label">Tudo pronto!</p>
+          <p class="stat-value">Sistema ativo</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

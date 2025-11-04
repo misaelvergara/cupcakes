@@ -3,36 +3,153 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   padding: 1rem;
+  overflow-y: auto;
 }
 
-.button-group {
+.content {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-section {
+  text-align: center;
+  
+  .cupcake-emoji {
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.menu-cards {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
-  max-width: 300px;
 }
 
-.home-button {
-  padding: 1rem 2rem;
-  background-color: #ffd9a8;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #333;
+.menu-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
   &:hover {
-    background-color: #ffcf8e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .card-arrow {
+      transform: translateX(5px);
+    }
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(-2px) scale(1.01);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+  }
+
+  .card-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    color: #999;
+    transition: transform 0.3s ease;
+  }
+
+  &.orders-card {
+    border-left: 4px solid #4CAF50;
+  }
+
+  &.catalog-card {
+    border-left: 4px solid #FF6B6B;
+  }
+}
+
+.footer-text {
+  text-align: center;
+  margin-top: 1rem;
+
+  p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
   }
 }
