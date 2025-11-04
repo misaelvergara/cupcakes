@@ -2,3 +2,7 @@
 node_modules
 dist
 .vscode
+
+# Backend - SQLite database
+bakery/cupcakes.db
+bakery/cupcakes.db-journal
