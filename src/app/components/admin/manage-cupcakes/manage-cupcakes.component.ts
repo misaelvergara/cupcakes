@@ -26,9 +26,31 @@ export class ManageCupcakesComponent {
     description: ''
   };
 
+  // Array de URLs reais de imagens de cupcakes
+  private cupcakeImages = [
+    'https://images.unsplash.com/photo-1426869981800-95ebf51ce900?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1587668178277-295251f900ce?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1603532648955-039310d9ed75?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1519869325930-281384150729?w=400&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=400&h=400&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=400&h=400&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=400&h=400&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1426869981800-95ebf51ce900?w=400&h=400&fit=crop&q=80'
+  ];
+
   constructor(
     private cupcakeService: CupcakeService
   ) {}
+
+  generateRandomImage(): void {
+    // Seleciona uma imagem aleatória do array de cupcakes reais
+    const randomIndex = Math.floor(Math.random() * this.cupcakeImages.length);
+    this.newCupcake.image = this.cupcakeImages[randomIndex];
+  }
 
   addOrUpdateCupcake(): void {
     if (!this.newCupcake.name || !this.newCupcake.price || !this.newCupcake.image) {
