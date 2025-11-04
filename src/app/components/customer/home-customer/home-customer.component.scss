@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  background: white;
   padding: 1rem;
   overflow-y: auto;
 }
@@ -40,14 +40,13 @@
   .title {
     font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    color: #333;
     margin: 0 0 0.5rem 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .subtitle {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: #666;
     margin: 0;
     font-weight: 400;
   }
@@ -135,11 +134,19 @@
   }
 
   &.orders-card {
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid #ffd9a8;
+    
+    &:hover {
+      border-left-color: #ffcf8e;
+    }
   }
 
   &.catalog-card {
-    border-left: 4px solid #FF6B6B;
+    border-left: 4px solid #ffd9a8;
+    
+    &:hover {
+      border-left-color: #ffcf8e;
+    }
   }
 }
 
@@ -149,7 +156,7 @@
 
   p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #999;
     margin: 0;
   }
 }
