@@ -2,6 +2,7 @@
 node_modules
 dist
 .vscode
+script.sh
 
 # Backend - SQLite database
 bakery/cupcakes.db
