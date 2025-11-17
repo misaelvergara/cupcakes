@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { initDatabase } = require('./database');
 const cupcakesRouter = require('./routes/cupcakes');
 const ordersRouter = require('./routes/orders');
@@ -18,13 +19,22 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// API Routes (devem vir ANTES do static)
 app.use('/api/cupcakes', cupcakesRouter);
 app.use('/api/orders', ordersRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Bakery API is running! 🧁' });
+});
+
+// Serve Angular build (static files)
+const distPath = path.join(__dirname, '../dist/cupcakes/browser');
+app.use(express.static(distPath));
+
+// Fallback para SPA (Angular routing)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 // Error handling
@@ -34,11 +44,6 @@ app.use((err, req, res, next) => {
     error: 'Something broke!', 
     message: err.message 
   });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
 });
 
 // Initialize database and start server
