@@ -163,10 +163,76 @@ npm run server         # Backend em http://localhost:3000
 npm run dev:server     # Backend com auto-reload (nodemon)
 npm run dev            # Frontend + Backend simultâneos
 npm run build          # Build de produção do Angular
-npm test               # Testes unitários
+
+# Testes
+npm test               # Roda todos os testes (backend + frontend)
+npm run test:backend   # Testes do backend com coverage
+npm run test:frontend  # Testes do frontend com coverage
 ```
 
-## 🧪 Testando a API
+## 🧪 Testes Automatizados
+
+O projeto possui **85 testes automatizados** com alta cobertura:
+
+### Backend (Node.js + Express)
+- **Framework**: Jest + Supertest
+- **Testes**: 40 testes (100% passing)
+- **Coverage**: 88%
+- **Arquivos**:
+  - `bakery/tests/cupcakes.test.js` - Testes de rotas de cupcakes
+  - `bakery/tests/orders.test.js` - Testes de rotas de pedidos
+  - `bakery/tests/database.test.js` - Testes do banco de dados
+
+```bash
+npm run test:backend          # Executar testes
+npm run test:backend:watch    # Modo watch (desenvolvimento)
+```
+
+**Cobertura:**
+```
+File              | % Stmts | % Branch | % Funcs | % Lines
+------------------|---------|----------|---------|--------
+routes/cupcakes   | 100     | 100      | 100     | 100
+routes/orders     | 96.55   | 87.5     | 88.89   | 96.43
+database.js       | 66.67   | 50       | 75      | 66.67
+```
+
+### Frontend (Angular 17)
+- **Framework**: Jest + ts-jest
+- **Testes**: 45 testes (100% passing)
+- **Coverage**: 98.76% (serviços)
+- **Arquivos**:
+  - `src/app/services/cart.service.spec.ts` - 19 testes (100% coverage)
+  - `src/app/services/cupcake.service.spec.ts` - 13 testes (96.15% coverage)
+  - `src/app/services/order.service.spec.ts` - 13 testes (100% coverage)
+
+```bash
+npm run test:frontend         # Executar testes
+npm run test:frontend:watch   # Modo watch (desenvolvimento)
+```
+
+**Cobertura:**
+```
+File                | % Stmts | % Branch | % Funcs | % Lines
+--------------------|---------|----------|---------|--------
+cart.service.ts     | 100     | 85.71    | 100     | 100
+cupcake.service.ts  | 96.15   | 100      | 93.75   | 95.65
+order.service.ts    | 100     | 100      | 100     | 100
+```
+
+**Funcionalidades Testadas:**
+- ✅ Gerenciamento de carrinho (adicionar, remover, atualizar quantidade)
+- ✅ CRUD de cupcakes (criar, ler, atualizar, deletar)
+- ✅ Gerenciamento de pedidos (criar, atualizar status, listar)
+- ✅ Signals computados (itemCount, total)
+- ✅ Tratamento de erros HTTP
+- ✅ Sincronização de estado
+
+**Documentação Completa:**
+- Backend: [`bakery/TESTS.md`](bakery/TESTS.md)
+- Frontend: [`TESTES_FRONTEND.md`](TESTES_FRONTEND.md)
+
+### Testando a API Manualmente
 
 Execute o script de testes:
 ```bash

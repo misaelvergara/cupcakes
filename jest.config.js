@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: 'node',
-  coverageDirectory: 'coverage',
+  coverageDirectory: 'coverage/backend',
   collectCoverageFrom: [
     'bakery/**/*.js',
     '!bakery/**/*.test.js',

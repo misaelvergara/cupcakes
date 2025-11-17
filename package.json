@@ -7,9 +7,11 @@
     "build": "ng build --configuration production",
     "build:full": "npm install && npm run build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:backend": "jest --coverage",
-    "test:backend:watch": "jest --watch",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "jest --config jest.config.js --coverage",
+    "test:backend:watch": "jest --config jest.config.js --watch",
+    "test:frontend": "jest --config jest.config.frontend.js --coverage",
+    "test:frontend:watch": "jest --config jest.config.frontend.js --watch",
     "server": "node bakery/server.js",
     "server:prod": "NODE_ENV=production node bakery/server.js",
     "dev:server": "nodemon bakery/server.js",
@@ -38,9 +40,12 @@
   },
   "devDependencies": {
     "@types/jasmine": "~5.1.0",
+    "@types/jest": "^30.0.0",
     "concurrently": "^8.2.2",
+    "identity-obj-proxy": "^3.0.0",
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
@@ -48,6 +53,7 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "nodemon": "^3.0.2",
     "supertest": "^6.3.4",
+    "ts-jest": "^29.4.5",
     "typescript": "~5.4.2"
   }
 }
