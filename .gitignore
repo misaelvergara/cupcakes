@@ -6,5 +6,5 @@ script.sh
 coverage/
 
 # Backend - SQLite database
-# bakery/cupcakes.db
-# bakery/cupcakes.db-journal
+bakery/cupcakes.db
+bakery/cupcakes.db-journal
