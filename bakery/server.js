@@ -30,12 +30,30 @@ app.get('/api/health', (req, res) => {
 
 // Serve Angular build (static files)
 const distPath = path.join(__dirname, '../dist/cupcakes/browser');
-app.use(express.static(distPath));
+const fs = require('fs');
 
-// Fallback para SPA (Angular routing)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
-});
+// Verificar se o build existe
+if (fs.existsSync(distPath)) {
+  console.log('✅ Serving Angular build from:', distPath);
+  app.use(express.static(distPath));
+
+  // Fallback para SPA (Angular routing)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+} else {
+  console.error('❌ Angular build not found at:', distPath);
+  console.error('Please run: npm run build');
+  
+  // Fallback quando não há build
+  app.get('*', (req, res) => {
+    res.status(503).json({ 
+      error: 'Application not built',
+      message: 'Please run "npm run build" first',
+      path: distPath
+    });
+  });
+}
 
 // Error handling
 app.use((err, req, res, next) => {
