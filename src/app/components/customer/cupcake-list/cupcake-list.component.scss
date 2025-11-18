@@ -13,6 +13,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   align-content: start;
+  grid-auto-rows: minmax(220px, auto);
 }
 
 .cupcake-card {
@@ -24,6 +25,9 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
 
   &::before {
     content: '';
@@ -66,6 +70,7 @@
     overflow: hidden;
     background: #f8f8f8;
     position: relative;
+    flex-shrink: 0;
 
     img {
       width: 100%;
@@ -80,6 +85,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    flex: 1;
+    min-height: 100px;
 
     h3 {
       font-size: 0.95rem;
@@ -92,6 +99,7 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      flex: 1;
     }
 
     .price {
@@ -104,6 +112,7 @@
       border-radius: 8px;
       text-align: center;
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
   }
 }

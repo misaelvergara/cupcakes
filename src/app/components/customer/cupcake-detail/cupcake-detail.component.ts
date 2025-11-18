@@ -16,6 +16,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
 export class CupcakeDetailComponent implements OnInit {
   cupcake: Cupcake | undefined;
   cartItemCount = this.cartService.itemCount;
+  quantity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,9 +34,25 @@ export class CupcakeDetailComponent implements OnInit {
     }
   }
 
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  getTotalPrice(): number {
+    return this.cupcake ? this.cupcake.price * this.quantity : 0;
+  }
+
   addToCart(): void {
     if (this.cupcake) {
-      this.cartService.addToCart(this.cupcake);
+      for (let i = 0; i < this.quantity; i++) {
+        this.cartService.addToCart(this.cupcake);
+      }
       this.router.navigate(['/customer/cupcakes']);
     }
   }

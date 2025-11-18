@@ -4,6 +4,10 @@
   <div class="content">
     <div class="orders-scroll" *ngIf="orders().length > 0">
       <div *ngFor="let order of orders()" class="order-card" [class]="getStatusClass(order.status)">
+        <div class="order-header">
+          <span class="order-id">Pedido #{{ order.id }}</span>
+        </div>
+
         <div class="order-items">
           <ul>
             <li *ngFor="let item of order.items">
@@ -13,6 +17,7 @@
         </div>
 
         <div class="order-info">
+          <p class="address"><strong>Endereço:</strong> {{ order.address }}</p>
           <p class="total">Total: R${{ order.total.toFixed(2) }} ({{ getPaymentMethodLabel(order.paymentMethod) }})</p>
           <p class="status" [class]="getStatusClass(order.status)">
             Status: {{ getStatusLabel(order.status) }}

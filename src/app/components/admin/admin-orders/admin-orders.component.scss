@@ -48,6 +48,20 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #999;
 
+  .order-header {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0e0e0;
+
+    .order-id {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
   &.pending {
     border-left-color: #ffa726;
   }
@@ -95,6 +109,17 @@
     margin-bottom: 0.75rem;
     padding-top: 0.75rem;
     border-top: 1px solid #ddd;
+
+    .address {
+      font-size: 0.85rem;
+      color: #555;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.4;
+
+      strong {
+        color: #333;
+      }
+    }
 
     .total {
       font-size: 0.95rem;

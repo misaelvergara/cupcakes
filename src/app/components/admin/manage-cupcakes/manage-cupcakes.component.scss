@@ -10,8 +10,8 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  overflow-y: auto;
   gap: 1rem;
+  overflow: hidden;
 }
 
 .form-section {
@@ -120,11 +120,30 @@
 }
 
 .cupcakes-list {
-  flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  max-height: 200px;
+  padding-right: 0.5rem;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ffdab9;
+    border-radius: 10px;
+    
+    &:hover {
+      background: #ffcda0;
+    }
+  }
 
   .cupcake-item {
     background: white;
@@ -137,6 +156,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    min-height: 86px;
 
     &::before {
       content: '';

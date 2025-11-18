@@ -16,6 +16,24 @@
       </div>
     </div>
 
+    <div class="quantity-section">
+      <label>Quantidade:</label>
+      <div class="quantity-control">
+        <button class="quantity-btn" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+          <span>−</span>
+        </button>
+        <span class="quantity-value">{{ quantity }}</span>
+        <button class="quantity-btn" (click)="increaseQuantity()">
+          <span>+</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="total-section">
+      <span class="total-label">Total:</span>
+      <span class="total-price">R$ {{ getTotalPrice().toFixed(2) }}</span>
+    </div>
+
     <button class="add-to-cart-button" (click)="addToCart()">
       Adicionar ao carrinho
     </button>
